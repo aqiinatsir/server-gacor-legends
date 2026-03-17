@@ -587,6 +587,105 @@ body {
     font-size: 14px;
 }
 
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    background: rgba(255, 140, 0, 0.08);
+    border: 1px solid rgba(255, 140, 0, 0.25);
+    border-radius: 10px;
+    gap: 5px;
+    transition: background 0.3s ease;
+    z-index: 1100;
+    flex-shrink: 0;
+}
+
+.hamburger:hover {
+    background: rgba(255, 140, 0, 0.18);
+}
+
+.hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--primary-orange);
+    border-radius: 2px;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Overlay Menu */
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 140, 0, 0.2);
+    padding: 20px 24px 28px;
+    z-index: 999;
+    flex-direction: column;
+    gap: 6px;
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.mobile-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.mobile-menu a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mobile-menu a:hover,
+.mobile-menu a.active {
+    color: var(--primary-orange);
+    background: rgba(255, 140, 0, 0.1);
+    border-color: rgba(255, 140, 0, 0.2);
+}
+
+.mobile-menu-divider {
+    height: 1px;
+    background: var(--border-color);
+    margin: 8px 0;
+}
+
 /* Responsive */
 @media (max-width: 992px) {
     .navbar {
@@ -595,6 +694,14 @@ body {
     
     .nav-links {
         display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .mobile-menu {
+        display: flex;
     }
     
     .hero h1 {
