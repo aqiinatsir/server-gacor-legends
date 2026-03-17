@@ -6,53 +6,30 @@
     <title>P2W - Gacor Legends</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .p2w-item-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .p2w-item-right { display: flex; align-items: center; gap: 12px; }
         .btn-buy {
             background: linear-gradient(135deg, #25D366, #128C7E);
-            color: #fff;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 13px;
-            text-decoration: none;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+            color: #fff; padding: 8px 18px; border-radius: 20px; font-weight: 700;
+            font-size: 13px; text-decoration: none; white-space: nowrap;
+            transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 6px;
         }
-        .btn-buy::before {
-            content: "💬";
-            font-size: 14px;
-        }
-        .btn-buy:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45);
-            background: linear-gradient(135deg, #2eea73, #25D366);
-        }
+        .btn-buy::before { content: "💬"; font-size: 14px; }
+        .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(37,211,102,0.45); background: linear-gradient(135deg,#2eea73,#25D366); }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="home.html" class="nav-logo">
                 <img src="logo.jpeg" alt="Gacor Legends">
                 <span>Gacor Legends</span>
             </a>
-            
             <ul class="nav-links">
                 <li><a href="home.html">Home</a></li>
                 <li><a href="penjelasan.html">Penjelasan</a></li>
                 <li><a href="p2w.html" class="active">P2W</a></li>
                 <li><a href="team.html">Team</a></li>
             </ul>
-            
             <div class="nav-user">
                 <div class="user-info" onclick="goToProfile()">
                     <img src="logo.jpeg" alt="Profile" id="navProfileImage">
@@ -60,181 +37,85 @@
                 </div>
                 <button class="btn-logout" onclick="logout()">Logout</button>
             </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
-
-    <!-- Main Content -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="home.html">🏠 Home</a>
+        <a href="penjelasan.html">📜 Penjelasan</a>
+        <a href="p2w.html" class="active">💎 P2W</a>
+        <a href="team.html">👥 Team</a>
+        <div class="mobile-menu-divider"></div>
+        <a href="profile.html">👤 Profile</a>
+        <a href="#" onclick="logout(); return false;">🚪 Logout</a>
+    </div>
     <main class="main-content">
         <section class="section">
             <div class="section-header">
                 <h2>Pay to Win (P2W)</h2>
                 <p>Dukung server kami dan dapatkan keuntungan eksklusif</p>
             </div>
-            
             <div class="p2w-container">
-                <!-- Rank Category -->
                 <div class="p2w-category">
                     <h3>👑 Rank</h3>
                     <ul class="p2w-list">
-                        <li>
-                            <span class="p2w-item-name">Tuan</span>
-                            <div class="p2w-item-right">
-                                <span class="p2w-item-price">Rp 50.000</span>
-                                <a href="https://wa.me/6283878828987?text=Halo%20admin%2C%20saya%20ingin%20membeli%20Rank%20Tuan%20seharga%20Rp%2050.000%20di%20Gacor%20Legends!" target="_blank" class="btn-buy">Beli</a>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="p2w-item-name">Tuan Muda</span>
-                            <div class="p2w-item-right">
-                                <span class="p2w-item-price">Rp 30.000</span>
-                                <a href="https://wa.me/6283878828987?text=Halo%20admin%2C%20saya%20ingin%20membeli%20Rank%20Tuan%20Muda%20seharga%20Rp%2030.000%20di%20Gacor%20Legends!" target="_blank" class="btn-buy">Beli</a>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="p2w-item-name">Sepuh</span>
-                            <div class="p2w-item-right">
-                                <span class="p2w-item-price">Rp 60.000</span>
-                                <a href="https://wa.me/6283878828987?text=Halo%20admin%2C%20saya%20ingin%20membeli%20Rank%20Sepuh%20seharga%20Rp%2060.000%20di%20Gacor%20Legends!" target="_blank" class="btn-buy">Beli</a>
-                            </div>
-                        </li>
+                        <li><span class="p2w-item-name">Tuan</span><div class="p2w-item-right"><span class="p2w-item-price">Rp 50.000</span><a href="https://wa.me/6283878828987?text=Halo%20admin%2C%20saya%20ingin%20membeli%20Rank%20Tuan%20seharga%20Rp%2050.000%20di%20Gacor%20Legends!" target="_blank" class="btn-buy">Beli</a></div></li>
+                        <li><span class="p2w-item-name">Tuan Muda</span><div class="p2w-item-right"><span class="p2w-item-price">Rp 30.000</span><a href="https://wa.me/6283878828987?text=Halo%20admin%2C%20saya%20ingin%20membeli%20Rank%20Tuan%20Muda%20seharga%20Rp%2030.000%20di%20Gacor%20Legends!" target="_blank" class="btn-buy">Beli</a></div></li>
+                        <li><span class="p2w-item-name">Sepuh</span><div class="p2w-item-right"><span class="p2w-item-price">Rp 60.000</span><a href="https://wa.me/6283878828987?text=Halo%20admin%2C%20saya%20ingin%20membeli%20Rank%20Sepuh%20seharga%20Rp%2060.000%20di%20Gacor%20Legends!" target="_blank" class="btn-buy">Beli</a></div></li>
                     </ul>
                 </div>
-                
-                <!-- Kit Category -->
                 <div class="p2w-category">
                     <h3>🎒 Kit</h3>
                     <ul class="p2w-list">
-                        <li>
-                            <span class="p2w-item-name">Suprem Kit</span>
-                            <div class="p2w-item-right">
-                                <span class="p2w-item-price">Rp 25.000</span>
-                                <a href="https://wa.me/6283878828987?text=Halo%20admin%2C%20saya%20ingin%20membeli%20Suprem%20Kit%20seharga%20Rp%2025.000%20di%20Gacor%20Legends!" target="_blank" class="btn-buy">Beli</a>
-                            </div>
-                        </li>
+                        <li><span class="p2w-item-name">Suprem Kit</span><div class="p2w-item-right"><span class="p2w-item-price">Rp 25.000</span><a href="https://wa.me/6283878828987?text=Halo%20admin%2C%20saya%20ingin%20membeli%20Suprem%20Kit%20seharga%20Rp%2025.000%20di%20Gacor%20Legends!" target="_blank" class="btn-buy">Beli</a></div></li>
                     </ul>
                 </div>
-                
-                <!-- Cosmetic Category -->
                 <div class="p2w-category">
                     <h3>✨ Cosmetic</h3>
                     <ul class="p2w-list">
-                        <li>
-                            <span class="p2w-item-name">Cosmetic Pack Basic</span>
-                            <div class="p2w-item-right">
-                                <span class="p2w-item-price">Rp 25.000</span>
-                                <a href="https://wa.me/6283878828987?text=Halo%20admin%2C%20saya%20ingin%20membeli%20Cosmetic%20Pack%20Basic%20seharga%20Rp%2025.000%20di%20Gacor%20Legends!" target="_blank" class="btn-buy">Beli</a>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="p2w-item-name">Cosmetic Pack Premium</span>
-                            <div class="p2w-item-right">
-                                <span class="p2w-item-price">Rp 30.000</span>
-                                <a href="https://wa.me/6283878828987?text=Halo%20admin%2C%20saya%20ingin%20membeli%20Cosmetic%20Pack%20Premium%20seharga%20Rp%2030.000%20di%20Gacor%20Legends!" target="_blank" class="btn-buy">Beli</a>
-                            </div>
-                        </li>
+                        <li><span class="p2w-item-name">Cosmetic Pack Basic</span><div class="p2w-item-right"><span class="p2w-item-price">Rp 25.000</span><a href="https://wa.me/6283878828987?text=Halo%20admin%2C%20saya%20ingin%20membeli%20Cosmetic%20Pack%20Basic%20seharga%20Rp%2025.000%20di%20Gacor%20Legends!" target="_blank" class="btn-buy">Beli</a></div></li>
+                        <li><span class="p2w-item-name">Cosmetic Pack Premium</span><div class="p2w-item-right"><span class="p2w-item-price">Rp 30.000</span><a href="https://wa.me/6283878828987?text=Halo%20admin%2C%20saya%20ingin%20membeli%20Cosmetic%20Pack%20Premium%20seharga%20Rp%2030.000%20di%20Gacor%20Legends!" target="_blank" class="btn-buy">Beli</a></div></li>
                     </ul>
                 </div>
             </div>
         </section>
-
-        <section class="section" style="background: linear-gradient(180deg, #0d0d0d, #111);">
-            <div class="section-header">
-                <h2>Cara Pembelian</h2>
-                <p>Ikuti langkah-langkah berikut untuk membeli</p>
-            </div>
-            
+        <section class="section" style="background:linear-gradient(180deg,#0d0d0d,#111);">
+            <div class="section-header"><h2>Cara Pembelian</h2><p>Ikuti langkah-langkah berikut untuk membeli</p></div>
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">1️⃣</div>
-                    <h3>Hubungi Admin</h3>
-                    <p>Hubungi admin melalui <a href="https://wa.me/6283878828987" target="_blank" style="color:#ff8c00;font-weight:700;">WhatsApp</a> atau Discord untuk konfirmasi pembelian.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">2️⃣</div>
-                    <h3>Pilih Item</h3>
-                    <p>Tentukan rank, kit, atau cosmetic yang ingin kamu beli.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">3️⃣</div>
-                    <h3>Lakukan Pembayaran</h3>
-                    <p>Transfer ke rekening yang diberikan oleh admin dan kirim bukti.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">4️⃣</div>
-                    <h3>Aktivasi</h3>
-                    <p>Admin akan mengaktifkan item yang kamu beli dalam waktu 24 jam.</p>
-                </div>
+                <div class="feature-card"><div class="feature-icon">1️⃣</div><h3>Hubungi Admin</h3><p>Hubungi admin melalui <a href="https://wa.me/6283878828987" target="_blank" style="color:#ff8c00;font-weight:700;">WhatsApp</a> atau Discord untuk konfirmasi pembelian.</p></div>
+                <div class="feature-card"><div class="feature-icon">2️⃣</div><h3>Pilih Item</h3><p>Tentukan rank, kit, atau cosmetic yang ingin kamu beli.</p></div>
+                <div class="feature-card"><div class="feature-icon">3️⃣</div><h3>Lakukan Pembayaran</h3><p>Transfer ke rekening yang diberikan oleh admin dan kirim bukti.</p></div>
+                <div class="feature-card"><div class="feature-icon">4️⃣</div><h3>Aktivasi</h3><p>Admin akan mengaktifkan item yang kamu beli dalam waktu 24 jam.</p></div>
             </div>
         </section>
-
         <section class="section">
-            <div class="section-header">
-                <h2>Keuntungan Rank</h2>
-                <p>Berbagai keuntungan yang didapat dengan membeli rank</p>
-            </div>
-            
+            <div class="section-header"><h2>Keuntungan Rank</h2><p>Berbagai keuntungan yang didapat dengan membeli rank</p></div>
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">💬</div>
-                    <h3>Chat Prefix Eksklusif</h3>
-                    <p>Tampilkan rankmu dengan prefix keren di chat server.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🏠</div>
-                    <h3>Home Tambahan</h3>
-                    <p>Dapatkan slot home tambahan untuk teleportasi yang lebih mudah.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">💰</div>
-                    <h3>Bonus Uang</h3>
-                    <p>Dapatkan bonus uang in-game setiap hari sesuai rank.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🎁</div>
-                    <h3>Kit Eksklusif</h3>
-                    <p>Akses ke kit eksklusif dengan item langka dan berkualitas.</p>
-                </div>
+                <div class="feature-card"><div class="feature-icon">💬</div><h3>Chat Prefix Eksklusif</h3><p>Tampilkan rankmu dengan prefix keren di chat server.</p></div>
+                <div class="feature-card"><div class="feature-icon">🏠</div><h3>Home Tambahan</h3><p>Dapatkan slot home tambahan untuk teleportasi yang lebih mudah.</p></div>
+                <div class="feature-card"><div class="feature-icon">💰</div><h3>Bonus Uang</h3><p>Dapatkan bonus uang in-game setiap hari sesuai rank.</p></div>
+                <div class="feature-card"><div class="feature-icon">🎁</div><h3>Kit Eksklusif</h3><p>Akses ke kit eksklusif dengan item langka dan berkualitas.</p></div>
             </div>
         </section>
     </main>
-
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-section">
-                <h4>Gacor Legends</h4>
-                <p>Server Minecraft Roleplay terbaik di Indonesia dengan komunitas yang ramah dan aktif.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <p><a href="home.html">Home</a></p>
-                <p><a href="penjelasan.html">Penjelasan</a></p>
-                <p><a href="p2w.html">P2W</a></p>
-                <p><a href="team.html">Team</a></p>
-            </div>
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p>Discord: Gacor Legends</p>
-                <p>WhatsApp: <a href="https://wa.me/6283878828987" target="_blank" style="color:#25D366;">+62 838-7882-8987</a></p>
-                <p>Email: support@gacorlegends.com</p>
-            </div>
+            <div class="footer-section"><h4>Gacor Legends</h4><p>Server Minecraft Roleplay terbaik di Indonesia dengan komunitas yang ramah dan aktif.</p></div>
+            <div class="footer-section"><h4>Quick Links</h4><p><a href="home.html">Home</a></p><p><a href="penjelasan.html">Penjelasan</a></p><p><a href="p2w.html">P2W</a></p><p><a href="team.html">Team</a></p></div>
+            <div class="footer-section"><h4>Contact</h4><p>Discord: Gacor Legends</p><p>WhatsApp: <a href="https://wa.me/6283878828987" target="_blank" style="color:#25D366;">+62 838-7882-8987</a></p><p>Email: support@gacorlegends.com</p></div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Gacor Legends. All rights reserved.</p>
-        </div>
+        <div class="footer-bottom"><p>&copy; 2024 Gacor Legends. All rights reserved.</p></div>
     </footer>
-
     <script src="script.js"></script>
     <script>
-        window.addEventListener('load', function() {
-            loadUserData();
-        });
+        window.addEventListener('load', function() { loadUserData(); });
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', function() { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+        mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }); });
+        document.addEventListener('click', function(e) { if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); } });
     </script>
 </body>
 </html>
