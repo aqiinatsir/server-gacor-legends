@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Profile page for Gacor Legends Minecraft Server">
+    <title>Profile - Gacor Legends</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .nav-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #ff8c00;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff8c00;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-user {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 25px;
+            background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+            border: 1px solid #333;
+            transition: all 0.3s;
+        }
+
+        .user-info:hover {
+            border-color: #ff8c00;
+            transform: translateY(-2px);
+        }
+
+        .user-info img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ff8c00;
+        }
+
+        .btn-logout {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-logout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            transition: all 0.3s;
+            border-radius: 2px;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: linear-gradient(180deg, #1e1e1e, #0a0a0a);
+            padding: 80px 20px 20px;
+            transition: right 0.3s ease;
+            z-index: 999;
+            border-left: 1px solid #333;
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 15px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu a:hover,
+        .mobile-menu a.active {
+            background: rgba(255, 140, 0, 0.2);
+            color: #ff8c00;
+        }
+
+        .mobile-menu-divider {
+            height: 1px;
+            background: #333;
+            margin: 20px 0;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 998;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 100px;
+            min-height: calc(100vh - 300px);
+        }
+
+        .profile-section {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .profile-header {
+            background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            border: 1px solid #333;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff8c00, #ffa500);
+        }
+
+        .profile-image-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #ff8c00;
+            box-shadow: 0 0 40px rgba(255, 140, 0, 0.4);
+            transition: transform 0.3s;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .change-photo-btn {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: linear-gradient(135deg, #ff8c00, #ffa500);
+            color: #000;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.4);
+        }
+
+        .change-photo-btn:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 6px 20px rgba(255, 140, 0, 0.6);
+        }
+
+        .change-photo-btn:active {
+            transform: scale(0.95);
+        }
+
+        .profile-header h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .profile-header p {
+            color: #888;
+            font-size: 16px;
+        }
+
+        .profile-form {
+            background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid #333;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-section {
+            margin-bottom: 35px;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-section h3 {
+            font-size: 20px;
+            color: #ff8c00;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #333;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #b0b0b0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 16px 20px;
+            background: linear-gradient(145deg, #151515, #1f1f1f);
+            border: 2px solid #333;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #ff8c00;
+            box-shadow: 0 0 15px rgba(255, 140, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .form-group input:disabled {
+            background: #0a0a0a;
+            color: #666;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .form-group input.error {
+            border-color: #dc3545;
+            box-shadow: 0 0 10px rgba(220, 53, 69, 0.3);
+        }
+
+        .form-group input.success {
+            border-color: #28a745;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .char-count {
+            text-align: right;
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, #ff8c00, #ffa500);
+            color: #000;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-save:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 140, 0, 0.4);
+        }
+
+        .btn-save:active:not(:disabled) {
+            transform: translateY(-1px);
+        }
+
+        .btn-save:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-save.loading {
+            color: transparent;
+        }
+
+        .btn-save.loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin-left: -10px;
+            margin-top: -10px;
+            border: 2px solid #000;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spinner 0.8s linear infinite;
+        }
+
+        @keyframes spinner {
+            to { transform: rotate(360deg); }
+        }
+
+        .message {
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            display: none;
+            animation: slideIn 0.3s ease;
+            position: relative;
+            padding-left: 50px;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .message::before {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+        }
+
+        .message.success {
+            background: linear-gradient(135deg, rgba(0, 100, 0, 0.9), rgba(34, 139, 34, 0.9));
+            color: #fff;
+            display: block;
+            border: 1px solid #28a745;
+        }
+
+        .message.success::before {
+            content: '✓';
+        }
+
+        .message.error {
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.9), rgba(165, 42, 42, 0.9));
+            color: #fff;
+            display: block;
+            border: 1px solid #dc3545;
+        }
+
+        .message.error::before {
+            content: '✕';
+        }
+
+        .message.info {
+            background: linear-gradient(135deg, rgba(0, 100, 200, 0.9), rgba(30, 144, 255, 0.9));
+            color: #fff;
+            display: block;
+            border: 1px solid #007bff;
+        }
+
+        .hidden-input {
+            display: none;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f0f0f;
+            border-top: 1px solid #333;
+            padding: 50px 20px 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h4 {
+            color: #ff8c00;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-section p {
+            color: #888;
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+
+        .footer-section a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #ff8c00;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links,
+            .nav-user {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .profile-section {
+                padding: 20px 15px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .profile-header {
+                padding: 30px 20px;
+            }
+
+            .profile-form {
+                padding: 25px 20px;
+            }
+
+            .profile-header h2 {
+                font-size: 24px;
+            }
+
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        /* Loading Skeleton */
+        .skeleton {
+            background: linear-gradient(90deg, #1e1e1e 25%, #2a2a2a 50%, #1e1e1e 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 8px;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Password Strength Indicator */
+        .password-strength {
+            height: 4px;
+            background: #333;
+            border-radius: 2px;
+            margin-top: 8px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .password-strength.show {
+            display: block;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            width: 0;
+            transition: all 0.3s;
+            border-radius: 2px;
+        }
+
+        .password-strength-bar.weak {
+            width: 33%;
+            background: #dc3545;
+        }
+
+        .password-strength-bar.medium {
+            width: 66%;
+            background: #ffc107;
+        }
+
+        .password-strength-bar.strong {
+            width: 100%;
+            background: #28a745;
+        }
+
+        .password-hint {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="home.html" class="nav-logo" aria-label="Gacor Legends Home">
+                <img src="logo.jpeg" alt="Gacor Legends Logo" loading="lazy">
+                <span>Gacor Legends</span>
+            </a>
+            
+            <ul class="nav-links" role="menubar">
+                <li role="none"><a href="home.html" role="menuitem">Home</a></li>
+                <li role="none"><a href="penjelasan.html" role="menuitem">Penjelasan</a></li>
+                <li role="none"><a href="p2w.html" role="menuitem">P2W</a></li>
+                <li role="none"><a href="team.html" role="menuitem">Team</a></li>
+            </ul>
+
+            <div class="nav-user">
+                <div class="user-info" onclick="goToProfile()" role="button" tabindex="0" aria-label="Go to profile">
+                    <img src="#" alt="Profile" id="navProfileImage" loading="lazy">
+                    <span id="navUsername">User</span>
+                </div>
+                <button class="btn-logout" onclick="logout()" aria-label="Logout">Logout</button>
+            </div>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+        <a href="home.html">🏠 Home</a>
+        <a href="penjelasan.html">📜 Penjelasan</a>
+        <a href="p2w.html">💎 P2W</a>
+        <a href="team.html">👥 Team</a>
+        <div class="mobile-menu-divider"></div>
+        <a href="profile.html" class="active" aria-current="page">👤 Profile</a>
+        <a href="#" onclick="logout(); return false;">🚪 Logout</a>
+    </div>
+
+    <main class="main-content">
+        <section class="profile-section">
+            <div class="profile-header">
+                <div class="profile-image-container">
+                    <img src="logo.jpeg" alt="Profile Photo" class="profile-image" id="profileImage" loading="lazy">
+                    <button class="change-photo-btn" onclick="document.getElementById('photoInput').click()" 
+                            title="Ubah Foto" aria-label="Change profile photo">
+                        📷
+                    </button>
+                    <input type="file" id="photoInput" class="hidden-input" accept="image/*" 
+                           onchange="handlePhotoChange(event)" aria-label="Upload photo">
+                </div>
+                <h2 id="profileName">User</h2>
+                <p id="profileEmail">user@example.com</p>
+            </div>
+
+            <div class="profile-form">
+                <div class="message" id="message" role="alert" aria-live="polite"></div>
+                
+                <form id="profileForm" novalidate>
+                    <div class="form-section">
+                        <h3>Informasi Dasar</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullname">Nama Lengkap <span aria-label="required">*</span></label>
+                                <input type="text" id="fullname" name="fullname" required 
+                                       minlength="3" maxlength="50" aria-required="true">
+                                <span class="error-message" id="fullnameError">Nama lengkap minimal 3 karakter</span>
+                                <div class="char-count"><span id="fullnameCount">0</span>/50</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" id="username" name="username" disabled 
+                                       aria-disabled="true" title="Username tidak dapat diubah">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email <span aria-label="required">*</span></label>
+                                <input type="email" id="email" name="email" required 
+                                       aria-required="true" autocomplete="email">
+                                <span class="error-message" id="emailError">Format email tidak valid</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="minecraftName">Nama Minecraft</label>
+                                <input type="text" id="minecraftName" name="minecraftName" 
+                                       placeholder="Username Minecraft Anda" maxlength="16">
+                                <div class="char-count"><span id="minecraftCount">0</span>/16</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Informasi Tambahan</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="discord">Discord</label>
+                                <input type="text" id="discord" name="discord" 
+                                       placeholder="Username#0000" pattern="^.{3,32}#[0-9]{4}$"
+                                       title="Format: Username#0000">
+                                <span class="error-message" id="discordError">Format Discord: Username#0000</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="joinedDate">Bergabung Sejak</label>
+                                <input type="text" id="joinedDate" disabled aria-disabled="true">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Ubah Password</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="currentPassword">Password Saat Ini</label>
+                                <input type="password" id="currentPassword" name="currentPassword" 
+                                       placeholder="Kosongkan jika tidak ingin mengubah" minlength="6"
+                                       autocomplete="current-password">
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">Password Baru</label>
+                                <input type="password" id="newPassword" name="newPassword" 
+                                       placeholder="Minimal 6 karakter" minlength="6"
+                                       autocomplete="new-password" oninput="checkPasswordStrength(this.value)">
+                                <div class="password-strength" id="passwordStrength">
+                                    <div class="password-strength-bar" id="strengthBar"></div>
+                                </div>
+                                <p class="password-hint">Password harus minimal 6 karakter</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-save" id="saveBtn">
+                        Simpan Perubahan
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Gacor Legends</h4>
+                <p>Server Minecraft Roleplay terbaik di Indonesia dengan komunitas yang ramah dan aktif.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <p><a href="home.html">Home</a></p>
+                <p><a href="penjelasan.html">Penjelasan</a></p>
+                <p><a href="p2w.html">P2W</a></p>
+                <p><a href="team.html">Team</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Discord: Gacor Legends</p>
+                <p>WhatsApp: <a href="https://wa.me/6283878828987" target="_blank" rel="noopener noreferrer" style="color:#25D366;">+62 838-7882-8987</a></p>
+                <p>Email: support@gacorlegends.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Gacor Legends. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        /**
+         * Profile Management System
+         * Handles user profile data, validation, and updates
+         */
+
+        // Configuration
+        const CONFIG = {
+            storageKeys: {
+                currentUser: 'gacorCurrentUser',
+                users: 'gacorUsers'
+            },
+            maxFileSize: 2 * 1024 * 1024, // 2MB
+            allowedImageTypes: ['image/jpeg', 'image/png', 'image/gif', 'image/webp']
+        };
+
+        // State Management
+        let currentUser = null;
+        let isSubmitting = false;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', initializeProfile);
+
+        function initializeProfile() {
+            checkAuthentication();
+            setupEventListeners();
+            setupCharacterCounters();
+        }
+
+        // Authentication Check
+        function checkAuthentication() {
+            try {
+                const userData = localStorage.getItem(CONFIG.storageKeys.currentUser);
+                if (!userData) {
+                    redirectToLogin();
+                    return;
+                }
+
+                currentUser = JSON.parse(userData);
+                
+                // Validate user data structure
+                if (!currentUser.id || !currentUser.username) {
+                    throw new Error('Invalid user data');
+                }
+
+                loadProfileData();
+                updateNavigation();
+            } catch (error) {
+                console.error('Auth error:', error);
+                showMessage('Terjadi kesalahan saat memuat data. Silakan login kembali.', 'error');
+                setTimeout(redirectToLogin, 2000);
+            }
+        }
+
+        function redirectToLogin() {
+            window.location.href = 'login.html';
+        }
+
+        // Data Loading
+        function loadProfileData() {
+            // Header info
+            document.getElementById('profileName').textContent = currentUser.fullname || currentUser.username;
+            document.getElementById('profileEmail').textContent = currentUser.email || 'user@example.com';
+            document.getElementById('profileImage').src = currentUser.profileImage || 'logo.jpeg';
+
+            // Form fields
+            document.getElementById('fullname').value = currentUser.fullname || '';
+            document.getElementById('username').value = currentUser.username || '';
+            document.getElementById('email').value = currentUser.email || '';
+            document.getElementById('minecraftName').value = currentUser.minecraftName || '';
+            document.getElementById('discord').value = currentUser.discord || '';
+
+            // Join date
+            if (currentUser.createdAt) {
+                const date = new Date(currentUser.createdAt);
+                document.getElementById('joinedDate').value = date.toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+            }
+
+            // Update char counters
+            updateCharCounter('fullname', 'fullnameCount');
+            updateCharCounter('minecraftName', 'minecraftCount');
+        }
+
+        function updateNavigation() {
+            document.getElementById('navUsername').textContent = currentUser.username || 'User';
+            document.getElementById('navProfileImage').src = currentUser.profileImage || 'logo.jpeg';
+        }
+
+        // Event Listeners
+        function setupEventListeners() {
+            // Form submission
+            document.getElementById('profileForm').addEventListener('submit', handleFormSubmit);
+
+            // Real-time validation
+            document.getElementById('fullname').addEventListener('blur', () => validateField('fullname', validateName));
+            document.getElementById('email').addEventListener('blur', () => validateField('email', validateEmail));
+            document.getElementById('discord').addEventListener('blur', () => validateField('discord', validateDiscord));
+
+            // Mobile menu
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('overlay');
+
+            hamburger.addEventListener('click', toggleMobileMenu);
+            overlay.addEventListener('click', closeMobileMenu);
+
+            // Close menu on link click
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeMobileMenu();
+            });
+        }
+
+        function setupCharacterCounters() {
+            const fields = [
+                { input: 'fullname', counter: 'fullnameCount', max: 50 },
+                { input: 'minecraftName', counter: 'minecraftCount', max: 16 }
+            ];
+
+            fields.forEach(({ input, counter, max }) => {
+                const element = document.getElementById(input);
+                element.addEventListener('input', () => {
+                    updateCharCounter(input, counter, max);
+                });
+            });
+        }
+
+        function updateCharCounter(inputId, counterId, max = null) {
+            const input = document.getElementById(inputId);
+            const counter = document.getElementById(counterId);
+            const length = input.value.length;
+            
+            counter.textContent = length;
+            
+            if (max && length > max) {
+                counter.style.color = '#dc3545';
+            } else {
+                counter.style.color = '#666';
+            }
+        }
+
+        // Photo Handling
+        function handlePhotoChange(event) {
+            const file = event.target.files[0];
+            
+            if (!file) return;
+
+            // Validation
+            if (!CONFIG.allowedImageTypes.includes(file.type)) {
+                showMessage('Format file tidak didukung. Gunakan JPG, PNG, GIF, atau WebP.', 'error');
+                return;
+            }
+
+            if (file.size > CONFIG.maxFileSize) {
+                showMessage('Ukuran file terlalu besar. Maksimal 2MB.', 'error');
+                return;
+            }
+
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                try {
+                    const imageData = e.target.result;
+                    
+                    // Update UI
+                    document.getElementById('profileImage').src = imageData;
+                    document.getElementById('navProfileImage').src = imageData;
+                    
+                    // Update data
+                    currentUser.profileImage = imageData;
+                    updateUserData({ profileImage: imageData });
+                    
+                    showMessage('Foto profil berhasil diubah!', 'success');
+                } catch (error) {
+                    console.error('Photo update error:', error);
+                    showMessage('Gagal mengubah foto profil.', 'error');
+                }
+            };
+
+            reader.onerror = () => {
+                showMessage('Gagal membaca file.', 'error');
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        // Form Handling
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            if (isSubmitting) return;
+
+            // Validate all fields
+            const isValid = validateForm();
+            if (!isValid) {
+                showMessage('Mohon periksa kembali data yang dimasukkan.', 'error');
+                return;
+            }
+
+            const submitBtn = document.getElementById('saveBtn');
+            setLoadingState(submitBtn, true);
+
+            try {
+                const formData = collectFormData();
+                
+                // Check password change
+                if (formData.currentPassword || formData.newPassword) {
+                    if (!await handlePasswordChange(formData.currentPassword, formData.newPassword)) {
+                        setLoadingState(submitBtn, false);
+                        return;
+                    }
+                }
+
+                // Update user data
+                const updates = {
+                    fullname: formData.fullname,
+                    email: formData.email,
+                    minecraftName: formData.minecraftName,
+                    discord: formData.discord,
+                    updatedAt: new Date().toISOString()
+                };
+
+                updateUserData(updates);
+                
+                // Update UI
+                document.getElementById('profileName').textContent = formData.fullname || currentUser.username;
+                document.getElementById('profileEmail').textContent = formData.email;
+                
+                // Clear password fields
+                document.getElementById('currentPassword').value = '';
+                document.getElementById('newPassword').value = '';
+                document.getElementById('passwordStrength').classList.remove('show');
+                
+                showMessage('Profil berhasil diperbarui!', 'success');
+                
+            } catch (error) {
+                console.error('Update error:', error);
+                showMessage('Terjadi kesalahan saat menyimpan data.', 'error');
+            } finally {
+                setLoadingState(submitBtn, false);
+            }
+        }
+
+        function collectFormData() {
+            return {
+                fullname: document.getElementById('fullname').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                minecraftName: document.getElementById('minecraftName').value.trim(),
+                discord: document.getElementById('discord').value.trim(),
+                currentPassword: document.getElementById('currentPassword').value,
+                newPassword: document.getElementById('newPassword').value
+            };
+        }
+
+        function validateForm() {
+            let isValid = true;
+
+            isValid = validateField('fullname', validateName) && isValid;
+            isValid = validateField('email', validateEmail) && isValid;
+            
+            const discord = document.getElementById('discord').value;
+            if (discord) {
+                isValid = validateField('discord', validateDiscord) && isValid;
+            }
+
+            return isValid;
+        }
+
+        function validateField(fieldId, validator) {
+            const field = document.getElementById(fieldId);
+            const errorEl = document.getElementById(fieldId + 'Error');
+            const value = field.value.trim();
+
+            if (!validator(value)) {
+                field.classList.add('error');
+                field.classList.remove('success');
+                if (errorEl) errorEl.classList.add('show');
+                return false;
+            } else {
+                field.classList.remove('error');
+                field.classList.add('success');
+                if (errorEl) errorEl.classList.remove('show');
+                return true;
+            }
+        }
+
+        function validateName(name) {
+            return name.length >= 3 && name.length <= 50;
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function validateDiscord(discord) {
+            if (!discord) return true;
+            const re = /^.{3,32}#[0-9]{4}$/;
+            return re.test(discord);
+        }
+
+        function checkPasswordStrength(password) {
+            const strengthDiv = document.getElementById('passwordStrength');
+            const strengthBar = document.getElementById('strengthBar');
+            
+            if (!password) {
+                strengthDiv.classList.remove('show');
+                return;
+            }
+
+            strengthDiv.classList.add('show');
+            
+            let strength = 0;
+            if (password.length >= 6) strength++;
+            if (password.length >= 10) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+            strengthBar.className = 'password-strength-bar';
+            
+            if (strength <= 2) {
+                strengthBar.classList.add('weak');
+            } else if (strength <= 4) {
+                strengthBar.classList.add('medium');
+            } else {
+                strengthBar.classList.add('strong');
+            }
+        }
+
+        async function handlePasswordChange(currentPass, newPass) {
+            // In production, this should be handled server-side
+            // This is a client-side simulation for demo purposes
+            
+            if (!currentPass || !newPass) {
+                if (currentPass || newPass) {
+                    showMessage('Harap isi kedua field password.', 'error');
+                    return false;
+                }
+                return true; // No password change requested
+            }
+
+            if (newPass.length < 6) {
+                showMessage('Password baru minimal 6 karakter!', 'error');
+                return false;
+            }
+
+            // Note: In real implementation, verify against hashed password
+            // Never store plain text passwords
+            const storedHash = currentUser.passwordHash; // Should be hashed
+            
+            // Simulate verification (INSECURE - for demo only)
+            if (currentPass !== currentUser.password) {
+                showMessage('Password saat ini salah!', 'error');
+                return false;
+            }
+
+            // Update password (should be hashed in production)
+            currentUser.password = newPass;
+            currentUser.passwordLastChanged = new Date().toISOString();
+            
+            return true;
+        }
+
+        // Data Persistence
+        function updateUserData(updates) {
+            // Update current user
+            Object.assign(currentUser, updates);
+            localStorage.setItem(CONFIG.storageKeys.currentUser, JSON.stringify(currentUser));
+
+            // Update users array
+            const users = JSON.parse(localStorage.getItem(CONFIG.storageKeys.users) || '[]');
+            const userIndex = users.findIndex(u => u.id === currentUser.id);
+            
+            if (userIndex !== -1) {
+                users[userIndex] = { ...users[userIndex], ...updates };
+                localStorage.setItem(CONFIG.storageKeys.users, JSON.stringify(users));
+            }
+        }
+
+        // UI Helpers
+        function setLoadingState(button, loading) {
+            isSubmitting = loading;
+            button.disabled = loading;
+            button.classList.toggle('loading', loading);
+        }
+
+        function showMessage(text, type = 'info', duration = 3000) {
+            const msg = document.getElementById('message');
+            msg.textContent = text;
+            msg.className = 'message ' + type;
+            
+            if (duration > 0) {
+                setTimeout(() => {
+                    msg.className = 'message';
+                    msg.textContent = '';
+                }, duration);
+            }
+        }
+
+        // Mobile Menu
+        function toggleMobileMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('overlay');
+            
+            const isOpen = mobileMenu.classList.contains('open');
+            
+            if (isOpen) {
+                closeMobileMenu();
+            } else {
+                hamburger.classList.add('open');
+                hamburger.setAttribute('aria-expanded', 'true');
+                mobileMenu.classList.add('open');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeMobileMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('overlay');
+            
+            hamburger.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+            mobileMenu.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Navigation
+        function goToProfile() {
+            window.location.href = 'profile.html';
+        }
+
+        function logout() {
+            if (confirm('Apakah Anda yakin ingin logout?')) {
+                localStorage.removeItem(CONFIG.storageKeys.currentUser);
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Expose functions to global scope for HTML onclick handlers
+        window.goToProfile = goToProfile;
+        window.logout = logout;
+        window.handlePhotoChange = handlePhotoChange;
+    </script>
+</body>
+</html>

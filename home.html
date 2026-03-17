@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Gacor Legends</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="home.html" class="nav-logo">
+                <img src="logo.jpeg" alt="Gacor Legends">
+                <span>Gacor Legends</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="home.html" class="active">Home</a></li>
+                <li><a href="penjelasan.html">Penjelasan</a></li>
+                <li><a href="p2w.html">P2W</a></li>
+                <li><a href="team.html">Team</a></li>
+            </ul>
+            
+            <div class="nav-user">
+                <div class="user-info" onclick="goToProfile()">
+                    <img src="logo.jpeg" alt="Profile" id="navProfileImage">
+                    <span id="navUsername">User</span>
+                </div>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <img src="logo.jpeg" alt="Gacor Legends Logo" class="hero-logo">
+                <h1>Gacor Legends</h1>
+                <p class="tagline">Server Minecraft Roleplay Terbaik</p>
+                <p class="description">
+                    Bergabunglah dengan komunitas roleplay terbesar di Indonesia. 
+                    Rasakan pengalaman bermain Minecraft yang berbeda dengan cerita, 
+                    karakter, dan petualangan yang tak terlupakan.
+                </p>
+                <div class="hero-buttons">
+                    <a href="penjelasan.html" class="btn-primary">Pelajari Lebih Lanjut</a>
+                    <a href="p2w.html" class="btn-secondary">Lihat P2W</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section">
+            <div class="section-header">
+                <h2>Fitur Unggulan</h2>
+                <p>Nikmati berbagai fitur menarik yang kami sediakan</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎭</div>
+                    <h3>Roleplay Seru</h3>
+                    <p>Mainkan berbagai peran dengan cerita yang mendalam dan komunitas yang aktif. Jadilah siapa pun yang kamu inginkan!</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🏰</div>
+                    <h3>Dunia Luas</h3>
+                    <p>Jelajahi dunia Minecraft yang luas dengan berbagai kota, desa, dan tempat rahasia yang menunggu untuk ditemukan.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Komunitas Aktif</h3>
+                    <p>Bergabung dengan ribuan pemain aktif yang siap bermain dan berinteraksi setiap hari.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚔️</div>
+                    <h3>Event Menarik</h3>
+                    <p>Ikuti berbagai event mingguan dan bulanan dengan hadiah menarik yang sayang untuk dilewatkan.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Anti-Cheat</h3>
+                    <p>Sistem anti-cheat canggih yang memastikan gameplay fair play untuk semua pemain.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💎</div>
+                    <h3>Rank Eksklusif</h3>
+                    <p>Dapatkan rank eksklusif dengan berbagai keuntungan dan fitur spesial untuk supporter server.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Gacor Legends</h4>
+                <p>Server Minecraft Roleplay terbaik di Indonesia dengan komunitas yang ramah dan aktif.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <p><a href="home.html">Home</a></p>
+                <p><a href="penjelasan.html">Penjelasan</a></p>
+                <p><a href="p2w.html">P2W</a></p>
+                <p><a href="team.html">Team</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Discord: Gacor Legends</p>
+                <p>Email: support@gacorlegends.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Gacor Legends. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Load user data
+        window.addEventListener('load', function() {
+            loadUserData();
+        });
+    </script>
+</body>
+</html>

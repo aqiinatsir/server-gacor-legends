@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Gacor Legends</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <!-- Decorative glow orbs -->
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+
+    <div class="login-container">
+        <div class="logo-section">
+            <img src="logo.jpeg" alt="Gacor Legends Logo">
+            <h1>Gacor Legends</h1>
+            <p>Server Minecraft Roleplay</p>
+        </div>
+
+        <div class="error-message" id="errorMessage"></div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Masukkan username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+            </div>
+
+            <button type="submit" class="btn-login">Login</button>
+        </form>
+
+        <div class="register-link">
+            <p>Belum punya akun? <a href="register.html">Daftar Sekarang</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Get registered users from localStorage
+            const users = JSON.parse(localStorage.getItem('gacorUsers') || '[]');
+            const user = users.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                // Save current user session
+                localStorage.setItem('gacorCurrentUser', JSON.stringify(user));
+                // Redirect to home
+                window.location.href = 'home.html';
+            } else {
+                errorMessage.textContent = 'Username atau password salah!';
+                errorMessage.classList.add('show');
+                setTimeout(() => {
+                    errorMessage.classList.remove('show');
+                }, 3000);
+            }
+        });
+
+        // Check if already logged in
+        window.addEventListener('load', function() {
+            const currentUser = localStorage.getItem('gacorCurrentUser');
+            if (currentUser) {
+                window.location.href = 'home.html';
+            }
+        });
+    </script>
+</body>
+</html>

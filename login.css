@@ -1,0 +1,221 @@
+/* Login Page Styles - Gacor Legends */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0d0d0d 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #e0e0e0;
+}
+
+.login-container {
+    background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+    border-radius: 20px;
+    padding: 50px 40px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(255, 165, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.login-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ff8c00, #ffa500, #ff8c00);
+}
+
+.logo-section {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.logo-section img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ff8c00;
+    box-shadow: 0 0 30px rgba(255, 140, 0, 0.4);
+    margin-bottom: 20px;
+}
+
+.logo-section h1 {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff8c00, #ffa500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.logo-section p {
+    color: #888;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #b0b0b0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 16px 20px;
+    background: linear-gradient(145deg, #151515, #1f1f1f);
+    border: 2px solid #333;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #ff8c00;
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0.2);
+    background: linear-gradient(145deg, #1a1a1a, #252525);
+}
+
+.form-group input::placeholder {
+    color: #666;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, #ff8c00, #ffa500);
+    border: none;
+    border-radius: 12px;
+    color: #000;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-login:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(255, 140, 0, 0.4);
+    background: linear-gradient(135deg, #ffa500, #ffb84d);
+}
+
+.btn-login:active {
+    transform: translateY(-1px);
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid #333;
+}
+
+.register-link p {
+    color: #888;
+    font-size: 14px;
+}
+
+.register-link a {
+    color: #ff8c00;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+    color: #ffa500;
+    text-decoration: underline;
+}
+
+.error-message {
+    background: linear-gradient(135deg, #8b0000, #a52a2a);
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    display: none;
+    border-left: 4px solid #ff4444;
+}
+
+.error-message.show {
+    display: block;
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+/* Decorative elements */
+.glow-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.glow-orb-1 {
+    width: 400px;
+    height: 400px;
+    background: #ff8c00;
+    top: -200px;
+    right: -200px;
+}
+
+.glow-orb-2 {
+    width: 300px;
+    height: 300px;
+    background: #4169e1;
+    bottom: -150px;
+    left: -150px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .login-container {
+        margin: 20px;
+        padding: 40px 25px;
+    }
+    
+    .logo-section img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .logo-section h1 {
+        font-size: 24px;
+    }
+}
