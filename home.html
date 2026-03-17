@@ -29,8 +29,26 @@
                 </div>
                 <button class="btn-logout" onclick="logout()">Logout</button>
             </div>
+
+            <!-- Hamburger Button -->
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="home.html" class="active">🏠 Home</a>
+        <a href="penjelasan.html">📜 Penjelasan</a>
+        <a href="p2w.html">💎 P2W</a>
+        <a href="team.html">👥 Team</a>
+        <div class="mobile-menu-divider"></div>
+        <a href="profile.html">👤 Profile</a>
+        <a href="#" onclick="logout(); return false;">🚪 Logout</a>
+    </div>
 
     <!-- Main Content -->
     <main class="main-content">
@@ -65,31 +83,26 @@
                     <h3>Roleplay Seru</h3>
                     <p>Mainkan berbagai peran dengan cerita yang mendalam dan komunitas yang aktif. Jadilah siapa pun yang kamu inginkan!</p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">🏰</div>
                     <h3>Dunia Luas</h3>
                     <p>Jelajahi dunia Minecraft yang luas dengan berbagai kota, desa, dan tempat rahasia yang menunggu untuk ditemukan.</p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">👥</div>
                     <h3>Komunitas Aktif</h3>
                     <p>Bergabung dengan ribuan pemain aktif yang siap bermain dan berinteraksi setiap hari.</p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">⚔️</div>
                     <h3>Event Menarik</h3>
                     <p>Ikuti berbagai event mingguan dan bulanan dengan hadiah menarik yang sayang untuk dilewatkan.</p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">🛡️</div>
                     <h3>Anti-Cheat</h3>
                     <p>Sistem anti-cheat canggih yang memastikan gameplay fair play untuk semua pemain.</p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">💎</div>
                     <h3>Rank Eksklusif</h3>
@@ -116,6 +129,7 @@
             <div class="footer-section">
                 <h4>Contact</h4>
                 <p>Discord: Gacor Legends</p>
+                <p>WhatsApp: <a href="https://wa.me/6283878828987" target="_blank" style="color:#25D366;">+62 838-7882-8987</a></p>
                 <p>Email: support@gacorlegends.com</p>
             </div>
         </div>
@@ -126,9 +140,33 @@
 
     <script src="script.js"></script>
     <script>
-        // Load user data
         window.addEventListener('load', function() {
             loadUserData();
+        });
+
+        // Hamburger toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Close menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                hamburger.classList.remove('open');
+                mobileMenu.classList.remove('open');
+            }
         });
     </script>
 </body>
