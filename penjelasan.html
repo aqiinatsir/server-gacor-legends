@@ -29,8 +29,26 @@
                 </div>
                 <button class="btn-logout" onclick="logout()">Logout</button>
             </div>
+
+            <!-- Hamburger Button -->
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="home.html">🏠 Home</a>
+        <a href="penjelasan.html" class="active">📜 Penjelasan</a>
+        <a href="p2w.html">💎 P2W</a>
+        <a href="team.html">👥 Team</a>
+        <div class="mobile-menu-divider"></div>
+        <a href="profile.html">👤 Profile</a>
+        <a href="#" onclick="logout(); return false;">🚪 Logout</a>
+    </div>
 
     <!-- Main Content -->
     <main class="main-content">
@@ -57,9 +75,7 @@
                     </p>
                     
                     <h3>Bagaimana Cara Bermain?</h3>
-                    <p>
-                        Untuk mulai bermain di Gacor Legends, Anda perlu:
-                    </p>
+                    <p>Untuk mulai bermain di Gacor Legends, Anda perlu:</p>
                     <p>
                         1. <strong>Buat Karakter:</strong> Tentukan siapa karakter Anda - nama, latar belakang, 
                         pekerjaan, dan kepribadian.<br><br>
@@ -100,19 +116,16 @@
                     <h3>Roleplay yang Baik</h3>
                     <p>Selalu stay in character dan jangan break karakter kecuali dalam situasi tertentu yang diizinkan.</p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">🤝</div>
                     <h3>Respect Sesama Player</h3>
                     <p>Hormati pemain lain, tidak ada toxic behavior, bullying, atau diskriminasi dalam bentuk apapun.</p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">🚫</div>
                     <h3>No Cheating</h3>
                     <p>Dilarang menggunakan cheat, hack, exploit, atau program pihak ketiga yang memberikan keuntungan tidak fair.</p>
                 </div>
-                
                 <div class="feature-card">
                     <div class="feature-icon">🏗️</div>
                     <h3>Build yang Sesuai</h3>
@@ -139,6 +152,7 @@
             <div class="footer-section">
                 <h4>Contact</h4>
                 <p>Discord: Gacor Legends</p>
+                <p>WhatsApp: <a href="https://wa.me/6283878828987" target="_blank" style="color:#25D366;">+62 838-7882-8987</a></p>
                 <p>Email: support@gacorlegends.com</p>
             </div>
         </div>
@@ -149,8 +163,24 @@
 
     <script src="script.js"></script>
     <script>
-        window.addEventListener('load', function() {
-            loadUserData();
+        window.addEventListener('load', function() { loadUserData(); });
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                mobileMenu.classList.remove('open');
+            });
+        });
+        document.addEventListener('click', function(e) {
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                hamburger.classList.remove('open');
+                mobileMenu.classList.remove('open');
+            }
         });
     </script>
 </body>
